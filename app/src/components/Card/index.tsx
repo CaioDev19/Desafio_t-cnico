@@ -4,6 +4,7 @@ import { FiShoppingBag } from "react-icons/fi"
 import { useDispatch } from "react-redux"
 import {
   addProduct,
+  removeAllProductsById,
   removeProduct,
 } from "../../features/cart/cartSlice"
 import { ReducedProduct } from "../../global/types/product"
@@ -27,6 +28,11 @@ export function Card({
   if (secondary) {
     return (
       <Sc.SecondaryCard>
+        <Sc.SecondaryCloseButton
+          onClick={() => dispatch(removeAllProductsById(id))}
+        >
+          X
+        </Sc.SecondaryCloseButton>
         <Sc.SecondaryCardLeft>
           <img src={photo} alt="dasd" />
           <Text

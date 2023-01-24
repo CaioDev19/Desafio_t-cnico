@@ -93,6 +93,8 @@ export const SecondaryCard = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 0.7rem;
+
+  position: relative;
 `
 export const SecondaryCardLeft = styled.div`
   display: flex;
@@ -108,6 +110,29 @@ export const SecondaryCardLeft = styled.div`
 export const SecondaryCardRight = styled(SecondaryCardLeft)`
   gap: 3rem;
   min-width: 55%;
+`
+export const SecondaryCloseButton = styled.button`
+  all: unset;
+  box-sizing: border-box;
+
+  cursor: pointer;
+
+  position: absolute;
+  top: -8px;
+  right: -4px;
+
+  background-color: ${({ theme }) => theme.COLORS.black};
+  color: ${({ theme }) => theme.COLORS.white};
+  font-weight: ${({ theme }) => theme.FONT_WEIGHT.rgl};
+  font-size: ${({ theme }) => theme.FONT_SIZE.sml};
+  line-height: 15px;
+  padding: 0.2rem 0.4rem;
+  border-radius: 50%;
+
+  transition: 0.2s ease-in-out;
+  &:hover {
+    opacity: 0.8;
+  }
 `
 
 export const CounterContainer = styled.div`

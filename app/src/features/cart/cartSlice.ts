@@ -80,9 +80,29 @@ const cartSlice = createSlice({
         state.totalPrice - Number(productExists.price)
       state.totalAmount = state.totalAmount - 1
     },
+    removeAllProductsById: (state, action: PayloadAction<number>) => {
+      const id = action.payload
+      const productExists = state.products.find(
+        (item: ReducedProduct) => item.id === id
+      )
+
+      if (!productExists) {
+        return
+      }
+
+      state.products = state.products.filter(
+        (item: ReducedProduct) => item.id !== id
+      )
+
+      state.totalPrice =
+        state.totalPrice -
+        Number(productExists.price) * productExists.amount
+      state.totalAmount = state.totalAmount - productExists.amount
+    },
   },
 })
 
-export const { addProduct, removeProduct } = cartSlice.actions
+export const { addProduct, removeProduct, removeAllProductsById } =
+  cartSlice.actions
 
 export default cartSlice.reducer
