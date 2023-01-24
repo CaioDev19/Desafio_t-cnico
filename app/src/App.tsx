@@ -3,14 +3,18 @@ import { GlobalStyles } from "./global/styles/GlobalStyles"
 import { MainRoutes } from "./routes"
 import { ThemeProvider } from "styled-components"
 import { theme } from "./global/styles/theme"
+import { Provider } from "react-redux"
+import { store } from "./config/store"
 
 function App() {
   return (
     <Router>
-      <ThemeProvider theme={theme}>
-        <MainRoutes />
-        <GlobalStyles />
-      </ThemeProvider>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <MainRoutes />
+          <GlobalStyles />
+        </ThemeProvider>
+      </Provider>
     </Router>
   )
 }

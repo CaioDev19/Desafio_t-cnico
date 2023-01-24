@@ -1,18 +1,98 @@
 import * as Sc from "./style"
 import { Text } from "../../global/styles/Typography"
 import { FiShoppingBag } from "react-icons/fi"
+import { useDispatch } from "react-redux"
+import {
+  addProduct,
+  removeProduct,
+} from "../../features/cart/cartSlice"
+import { ReducedProduct } from "../../global/types/product"
 
-interface Props {
-  image: string
-  title: string
-  price: string
-  description: string
-}
+export function Card({
+  id,
+  name,
+  photo,
+  description,
+  price,
+  secondary,
+  amount,
+  totalPrice,
+}: ReducedProduct & {
+  secondary?: boolean
+  amount?: number
+  totalPrice?: number
+}) {
+  const dispatch = useDispatch()
 
-export function Card({ image, title, price, description }: Props) {
+  if (secondary) {
+    return (
+      <Sc.SecondaryCard>
+        <Sc.SecondaryCardLeft>
+          <img src={photo} alt="dasd" />
+          <Text
+            type="span"
+            as="span"
+            color="black_200"
+            size="sml"
+            weight="rgl"
+          >
+            {name}
+          </Text>
+        </Sc.SecondaryCardLeft>
+        <Sc.SecondaryCardRight>
+          <Sc.CounterContainer>
+            <Text type="span" as="span" size="exml" weight="rgl">
+              Qtd:
+            </Text>
+            <Sc.Counter>
+              <button onClick={() => dispatch(removeProduct(id))}>
+                -
+              </button>
+              <Sc.CounterText>
+                <Text
+                  type="span"
+                  as="span"
+                  size="exml"
+                  weight="sstr"
+                  color="black"
+                >
+                  {amount}
+                </Text>
+              </Sc.CounterText>
+              <button
+                onClick={() =>
+                  dispatch(
+                    addProduct({
+                      id,
+                      name,
+                      photo,
+                      description,
+                      price,
+                    })
+                  )
+                }
+              >
+                +
+              </button>
+            </Sc.Counter>
+          </Sc.CounterContainer>
+          <Text
+            type="span"
+            as="span"
+            color="black_200"
+            size="sml"
+            weight="sstr"
+          >
+            R$ {totalPrice}
+          </Text>
+        </Sc.SecondaryCardRight>
+      </Sc.SecondaryCard>
+    )
+  }
+
   return (
     <Sc.Card>
-      <Sc.CardImage src={image} />
+      <Sc.CardImage src={photo} />
       <Sc.CardText>
         <Sc.UpperCardText>
           <Text
@@ -23,7 +103,7 @@ export function Card({ image, title, price, description }: Props) {
             color="black_200"
             position="left"
           >
-            {title}
+            {name}
           </Text>
           <Sc.PriceTag>
             <Text
@@ -33,7 +113,7 @@ export function Card({ image, title, price, description }: Props) {
               size="rgl"
               color="white"
             >
-              {price}
+              R$ {Number(price).toFixed(0)}
             </Text>
           </Sc.PriceTag>
         </Sc.UpperCardText>
@@ -47,7 +127,19 @@ export function Card({ image, title, price, description }: Props) {
           {description}
         </Text>
       </Sc.CardText>
-      <Sc.BuyButton>
+      <Sc.BuyButton
+        onClick={() =>
+          dispatch(
+            addProduct({
+              id,
+              name,
+              photo,
+              description,
+              price,
+            })
+          )
+        }
+      >
         <FiShoppingBag size={20} color="white" />
         <Text
           type="span"
