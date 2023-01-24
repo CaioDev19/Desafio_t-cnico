@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import { getProductsApi } from "../../services/requests"
-import { Product } from "../../global/types/product"
+import { getProductsApi } from "../../../services/requests"
+import { Product } from "../../../global/types/product"
 
 export interface IinitalState {
   products: Product[] | []

@@ -2,8 +2,8 @@ import * as Sc from "./style"
 import { FaShoppingCart } from "react-icons/fa"
 import { Text } from "../../global/styles/Typography"
 import { useDispatch, useSelector } from "react-redux"
-import { toogle } from "../../features/sideBar/sideBarSlice"
-import { RootState } from "../../config/store"
+import { toogle } from "../../store/features/sideBar/sideBarSlice"
+import { RootState } from "../../store/config/store"
 
 export function Header() {
   const { totalAmount } = useSelector(

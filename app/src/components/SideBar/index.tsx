@@ -1,15 +1,21 @@
 import * as Sc from "./style"
 import { Text } from "../../global/styles/Typography"
 import { useSelector, useDispatch } from "react-redux"
-import { RootState } from "../../config/store"
-import { toogle } from "../../features/sideBar/sideBarSlice"
-import { Card } from "../Card"
+import { RootState } from "../../store/config/store"
+import { toogle } from "../../store/features/sideBar/sideBarSlice"
+import { Product } from "../Product"
+import { useWindow } from "../../hooks/useWindow"
+import { MobileProduct } from "../Product/Mobile"
+import { useTheme } from "styled-components"
+
 export function SideBar() {
   const {
     sideBar: { isOpen },
     cart: { products, totalPrice },
   } = useSelector((state: RootState) => state)
   const dispatch = useDispatch()
+  const { width } = useWindow()
+  const theme = useTheme()
 
   if (!isOpen) return null
 
@@ -31,9 +37,13 @@ export function SideBar() {
             X
           </Sc.CloseButton>
           <Sc.CardContainer>
-            {products.map((product) => (
-              <Card key={product.id} {...product} secondary />
-            ))}
+            {width! < theme.BREAKPOINTS.tablet
+              ? products.map((product) => (
+                  <MobileProduct key={product.id} {...product} />
+                ))
+              : products.map((product) => (
+                  <Product key={product.id} {...product} secondary />
+                ))}
           </Sc.CardContainer>
         </Sc.SideBarUpperContent>
         <Sc.SideBarLowerContent>

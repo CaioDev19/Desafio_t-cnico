@@ -1,14 +1,14 @@
 import { Footer } from "../../components/Footer"
 import { Header } from "../../components/Header"
 import * as Sc from "./style"
-import { Card } from "../../components/Card"
+import { Product } from "../../components/Product"
 import { SideBar } from "../../components/SideBar"
 import { useSelector } from "react-redux"
-import { AppDispatch, RootState } from "../../config/store"
+import { AppDispatch, RootState } from "../../store/config/store"
 import { useDispatch } from "react-redux"
-import { fetchProducts } from "../../features/product/productSlice"
+import { fetchProducts } from "../../store/features/product/productSlice"
 import { useEffect } from "react"
-import { ProductSkeleton } from "../../components/Card/Skeleton"
+import { ProductSkeleton } from "../../components/Product/Skeleton"
 import { Error } from "../../components/Error"
 
 export function Home() {
@@ -37,7 +37,7 @@ export function Home() {
             <Sc.Cards>
               {products.map((product) => {
                 return (
-                  <Card
+                  <Product
                     key={product.id}
                     id={product.id}
                     price={product.price}

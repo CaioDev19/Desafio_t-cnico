@@ -6,10 +6,10 @@ import {
   addProduct,
   removeAllProductsById,
   removeProduct,
-} from "../../features/cart/cartSlice"
+} from "../../store/features/cart/cartSlice"
 import { ReducedProduct } from "../../global/types/product"
 
-export function Card({
+export function Product({
   id,
   name,
   photo,

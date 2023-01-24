@@ -4,7 +4,7 @@ import { MainRoutes } from "./routes"
 import { ThemeProvider } from "styled-components"
 import { theme } from "./global/styles/theme"
 import { Provider } from "react-redux"
-import { store } from "./config/store"
+import { store } from "./store/config/store"
 
 function App() {
   return (

@@ -20,6 +20,8 @@ export const Container = styled.aside`
   top: 0;
   right: 0;
   bottom: 0;
+
+  overflow-y: auto;
 `
 export const SideBarContent = styled.div`
   width: 90%;
@@ -28,8 +30,13 @@ export const SideBarContent = styled.div`
 
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
   justify-content: space-between;
   align-items: space-between;
+
+  @media (max-width: ${({ theme }) => theme.BREAKPOINTS.tablet}px) {
+    width: 80%;
+  }
 `
 export const SideBarUpperContent = styled.div`
   display: flex;
@@ -74,6 +81,8 @@ export const CloseButton = styled.button`
 export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 1.5rem;
 `
 export const TotalContainer = styled.div`

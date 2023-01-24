@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { ReducedProduct } from "../../global/types/product"
+import { ReducedProduct } from "../../../global/types/product"
 
 type ProductCount = ReducedProduct & {
   amount: number
