@@ -8,9 +8,11 @@ import { AppDispatch, RootState } from "../../config/store"
 import { useDispatch } from "react-redux"
 import { fetchProducts } from "../../features/product/productSlice"
 import { useEffect } from "react"
+import { ProductSkeleton } from "../../components/Card/Skeleton"
+import { Error } from "../../components/Error"
 
 export function Home() {
-  const { isLoading, products } = useSelector(
+  const { isError, isLoading, products } = useSelector(
     (state: RootState) => state.products
   )
   const dispatch = useDispatch<AppDispatch>()
@@ -25,9 +27,15 @@ export function Home() {
       <Sc.MainContainer>
         <Header />
         <Sc.MainContent>
-          <Sc.Cards>
-            {!isLoading &&
-              products.map((product) => {
+          {isError ? (
+            <Error message="Algo deu errado ao carregar os produtos" />
+          ) : isLoading ? (
+            <Sc.LoadingContainer>
+              <ProductSkeleton amount={8} />
+            </Sc.LoadingContainer>
+          ) : (
+            <Sc.Cards>
+              {products.map((product) => {
                 return (
                   <Card
                     key={product.id}
@@ -39,7 +47,8 @@ export function Home() {
                   />
                 )
               })}
-          </Sc.Cards>
+            </Sc.Cards>
+          )}
         </Sc.MainContent>
         <Footer />
       </Sc.MainContainer>

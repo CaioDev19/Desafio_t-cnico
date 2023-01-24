@@ -32,3 +32,6 @@ export const Cards = styled.div`
   gap: 1.4rem;
   flex-wrap: wrap;
 `
+export const LoadingContainer = styled(Cards)`
+  gap: 2.3rem;
+`

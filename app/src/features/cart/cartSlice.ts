@@ -11,6 +11,7 @@ interface IinitialState {
   totalPrice: number
   products: ProductCount[] | []
 }
+
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
@@ -31,22 +32,23 @@ const cartSlice = createSlice({
             ? {
                 ...item,
                 amount: item.amount + 1,
-                totalPrice:
-                  item.totalPrice + Number(productExists.price),
+                totalPrice: item.totalPrice + Number(item.price),
               }
             : item
         )
-        state.totalAmount = state.totalAmount + 1
-        state.totalPrice =
-          state.totalPrice + Number(productExists.price)
-        return
+      } else {
+        state.products = [
+          ...state.products,
+          {
+            ...product,
+            amount: 1,
+            totalPrice: Number(product.price),
+          },
+        ]
       }
 
-      state.products = [
-        ...state.products,
-        { ...product, amount: 1, totalPrice: Number(product.price) },
-      ]
       state.totalAmount = state.totalAmount + 1
+      state.totalPrice = state.totalPrice + Number(product.price)
     },
     removeProduct: (state, action: PayloadAction<number>) => {
       const id = action.payload
@@ -54,31 +56,29 @@ const cartSlice = createSlice({
         (item: ReducedProduct) => item.id === id
       )
 
-      if (productExists && productExists.amount === 1) {
-        state.products = state.products.filter(
-          (item: ReducedProduct) => item.id !== id
-        )
-        state.totalAmount = state.totalAmount - 1
-        state.totalPrice =
-          state.totalPrice - Number(productExists.price)
+      if (!productExists) {
         return
       }
 
-      if (productExists) {
+      if (productExists.amount === 1) {
+        state.products = state.products.filter(
+          (item: ReducedProduct) => item.id !== id
+        )
+      } else {
         state.products = state.products.map((item: ProductCount) =>
           item.id === id
             ? {
                 ...item,
                 amount: item.amount - 1,
-                totalPrice:
-                  item.totalPrice - Number(productExists.price),
+                totalPrice: item.totalPrice - Number(item.price),
               }
             : item
         )
-        state.totalPrice =
-          state.totalPrice - Number(productExists.price)
-        state.totalAmount = state.totalAmount - 1
       }
+
+      state.totalPrice =
+        state.totalPrice - Number(productExists.price)
+      state.totalAmount = state.totalAmount - 1
     },
   },
 })
