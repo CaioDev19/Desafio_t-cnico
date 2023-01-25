@@ -3,6 +3,11 @@ import styled from "styled-components"
 export const Container = styled.header`
   width: 100%;
   background-color: ${({ theme }) => theme.COLORS.blue};
+
+  @media (max-width: ${({ theme }) => theme.BREAKPOINTS.tablet}px) {
+    position: sticky;
+    top: 0;
+  }
 `
 export const HeaderContent = styled.div`
   width: 90%;

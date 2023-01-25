@@ -7,6 +7,7 @@ import { Product } from "../Product"
 import { useWindow } from "../../hooks/useWindow"
 import { MobileProduct } from "../Product/Mobile"
 import { useTheme } from "styled-components"
+import { clearCart } from "../../store/features/cart/cartSlice"
 
 export function SideBar() {
   const {
@@ -46,40 +47,45 @@ export function SideBar() {
                 ))}
           </Sc.CardContainer>
         </Sc.SideBarUpperContent>
-        <Sc.SideBarLowerContent>
-          <Sc.TotalContainer>
-            <Text
-              type="title"
-              as="h3"
-              color="white"
-              size="exl"
-              weight="sstr"
-            >
-              Total:
-            </Text>
-            <Text
-              type="title"
-              as="h3"
-              color="white"
-              size="exl"
-              weight="sstr"
-            >
-              R$ {totalPrice.toFixed(2)}
-            </Text>
-          </Sc.TotalContainer>
-        </Sc.SideBarLowerContent>
       </Sc.SideBarContent>
-      <Sc.EndButton>
-        <Text
-          type="span"
-          as="span"
-          color="white"
-          size="exl"
-          weight="sstr"
+      <Sc.SideBarLowerContent>
+        <Sc.TotalContainer>
+          <Text
+            type="title"
+            as="h3"
+            color="white"
+            size="exl"
+            weight="sstr"
+          >
+            Total:
+          </Text>
+          <Text
+            type="title"
+            as="h3"
+            color="white"
+            size="exl"
+            weight="sstr"
+          >
+            R$ {totalPrice.toFixed(2)}
+          </Text>
+        </Sc.TotalContainer>
+        <Sc.EndButton
+          onClick={() => {
+            if (products.length === 0) return
+            dispatch(clearCart())
+          }}
         >
-          Finalizar Compra
-        </Text>
-      </Sc.EndButton>
+          <Text
+            type="span"
+            as="span"
+            color="white"
+            size="exl"
+            weight="sstr"
+          >
+            Finalizar Compra
+          </Text>
+        </Sc.EndButton>
+      </Sc.SideBarLowerContent>
     </Sc.Container>
   )
 }

@@ -22,7 +22,7 @@ export const MobileCounter = styled(Counter)`
   }
 `
 export const MobileCounterText = styled(CounterText)`
-  padding: 0 0.75rem;
+  width: 2.5rem;
 `
 export const CloseButton = styled.button`
   all: unset;

@@ -20,6 +20,10 @@ export const Card = styled.div`
   &:hover {
     transform: scale(1.05);
   }
+
+  @media (max-width: ${({ theme }) => theme.BREAKPOINTS.tablet}px) {
+    width: 251px;
+  }
 `
 export const CardImage = styled.img`
   height: 138px;
@@ -85,7 +89,7 @@ export const SecondaryCard = styled.div`
   background: #ffffff;
   box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
-  padding: 1.25rem 1.4rem;
+  padding: 1.25rem 0.8rem;
 
   width: 100%;
 
@@ -99,8 +103,9 @@ export const SecondaryCard = styled.div`
 export const SecondaryCardLeft = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1.25rem;
+  width: 45%;
 
   img {
     height: 50px;
@@ -108,8 +113,11 @@ export const SecondaryCardLeft = styled.div`
   }
 `
 export const SecondaryCardRight = styled(SecondaryCardLeft)`
-  gap: 3rem;
-  min-width: 55%;
+  width: 50%;
+
+  & > ${Text} {
+    flex-grow: 1;
+  }
 `
 export const SecondaryCloseButton = styled.button`
   all: unset;
@@ -152,7 +160,7 @@ export const Counter = styled.div`
   background: ${({ theme }) => theme.COLORS.white};
   border: 0.3px solid ${({ theme }) => theme.COLORS.gray_100};
   border-radius: 4px;
-  padding: 0.1rem 0.5rem;
+  padding: 0 0.3rem;
 
   button {
     all: unset;
@@ -164,5 +172,6 @@ export const Counter = styled.div`
 export const CounterText = styled.span`
   border-left: solid 0.5px ${({ theme }) => theme.COLORS.gray_100};
   border-right: solid 0.5px ${({ theme }) => theme.COLORS.gray_100};
-  padding: 0 0.25rem;
+  text-align: center;
+  width: 1.5rem;
 `

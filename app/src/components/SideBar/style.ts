@@ -24,15 +24,13 @@ export const Container = styled.aside`
   overflow-y: auto;
 `
 export const SideBarContent = styled.div`
-  width: 90%;
-  height: 100%;
+  width: 80%;
   margin: 0 auto;
 
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   justify-content: space-between;
-  align-items: space-between;
 
   @media (max-width: ${({ theme }) => theme.BREAKPOINTS.tablet}px) {
     width: 80%;
@@ -50,10 +48,10 @@ export const SideBarUpperContent = styled.div`
 `
 export const SideBarLowerContent = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  flex-direction: column;
   gap: 1.5rem;
+  width: 100%;
 `
 export const CloseButton = styled.button`
   all: unset;
@@ -87,13 +85,20 @@ export const CardContainer = styled.div`
 `
 export const TotalContainer = styled.div`
   display: flex;
-  width: 100%;
+  width: 80%;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: ${({ theme }) => theme.BREAKPOINTS.tablet}px) {
+    ${Text} {
+      font-size: ${({ theme }) => theme.FONT_SIZE.lrg};
+    }
+  }
 `
 export const EndButton = styled.button`
   all: unset;
   box-sizing: border-box;
+  width: 100%;
 
   cursor: pointer;
   display: flex;

@@ -12,13 +12,15 @@ interface IinitialState {
   products: ProductCount[] | []
 }
 
+const initialState: IinitialState = {
+  totalAmount: 0,
+  totalPrice: 0,
+  products: [],
+}
+
 const cartSlice = createSlice({
   name: "cart",
-  initialState: {
-    totalAmount: 0,
-    totalPrice: 0,
-    products: [],
-  } as IinitialState,
+  initialState,
   reducers: {
     addProduct: (state, action: PayloadAction<ReducedProduct>) => {
       const product = action.payload
@@ -57,7 +59,7 @@ const cartSlice = createSlice({
       )
 
       if (!productExists) {
-        return
+        return state
       }
 
       if (productExists.amount === 1) {
@@ -87,7 +89,7 @@ const cartSlice = createSlice({
       )
 
       if (!productExists) {
-        return
+        return state
       }
 
       state.products = state.products.filter(
@@ -99,10 +101,19 @@ const cartSlice = createSlice({
         Number(productExists.price) * productExists.amount
       state.totalAmount = state.totalAmount - productExists.amount
     },
+    clearCart: (state) => {
+      state.totalPrice = 0
+      state.totalAmount = 0
+      state.products = []
+    },
   },
 })
 
-export const { addProduct, removeProduct, removeAllProductsById } =
-  cartSlice.actions
+export const {
+  addProduct,
+  removeProduct,
+  removeAllProductsById,
+  clearCart,
+} = cartSlice.actions
 
 export default cartSlice.reducer
