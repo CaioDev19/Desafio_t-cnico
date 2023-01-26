@@ -52,7 +52,6 @@ describe("carSlice", () => {
       expect(state.totalAmount).toBe(1)
       expect(state.totalPrice).toBe(Number(product.price))
       expect(state.products[0].amount).toBe(1)
-      expect(state.products[0].totalPrice).toBe(Number(product.price))
     })
     it("should increase product amount if it already exists", () => {
       const product = mock[0]
@@ -63,7 +62,6 @@ describe("carSlice", () => {
           {
             ...product,
             amount: 1,
-            totalPrice: Number(product.price),
           },
         ],
       }
@@ -75,9 +73,6 @@ describe("carSlice", () => {
       expect(state.totalAmount).toBe(2)
       expect(state.totalPrice).toBe(Number(product.price) * 2)
       expect(state.products[0].amount).toBe(2)
-      expect(state.products[0].totalPrice).toBe(
-        Number(product.price) * 2
-      )
     })
     it("should increase the total amount and total price", () => {
       const initialProduct = mock[0]
@@ -88,7 +83,6 @@ describe("carSlice", () => {
           {
             ...initialProduct,
             amount: 1,
-            totalPrice: Number(initialProduct.price),
           },
         ],
       }
@@ -99,9 +93,6 @@ describe("carSlice", () => {
       expect(state.products).toHaveLength(2)
       expect(state.products[1].id).toBe(product.id)
       expect(state.totalAmount).toBe(2)
-      expect(state.totalPrice).toBe(
-        initialState.totalPrice + Number(product.price)
-      )
     })
   })
   describe("removeProduct", () => {
@@ -125,7 +116,6 @@ describe("carSlice", () => {
           {
             ...product,
             amount: 1,
-            totalPrice: Number(product.price),
           },
         ],
       }
@@ -148,7 +138,6 @@ describe("carSlice", () => {
           {
             ...product,
             amount: 2,
-            totalPrice: Number(product.price) * 2,
           },
         ],
       }
@@ -162,7 +151,6 @@ describe("carSlice", () => {
       expect(state.totalAmount).toBe(1)
       expect(state.totalPrice).toBe(Number(product.price))
       expect(state.products[0].amount).toBe(1)
-      expect(state.products[0].totalPrice).toBe(Number(product.price))
     })
   })
   describe("removeAllProductsById", () => {
@@ -190,12 +178,10 @@ describe("carSlice", () => {
           {
             ...product,
             amount: 2,
-            totalPrice: Number(product.price) * 2,
           },
           {
             ...mock[1],
             amount: 2,
-            totalPrice: Number(product.price) * 2,
           },
         ],
       }
@@ -220,7 +206,6 @@ describe("carSlice", () => {
           {
             ...product,
             amount: 2,
-            totalPrice: Number(product.price) * 2,
           },
         ],
       }

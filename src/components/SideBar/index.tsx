@@ -8,6 +8,7 @@ import { useWindow } from "../../hooks/useWindow"
 import { MobileProduct } from "../Product/Mobile"
 import { useTheme } from "styled-components"
 import { clearCart } from "../../store/features/cart/cartSlice"
+import { transformToReal } from "../../util/currency"
 
 export function SideBar() {
   const {
@@ -66,7 +67,7 @@ export function SideBar() {
             size="exl"
             weight="sstr"
           >
-            R$ {totalPrice.toFixed(2)}
+            R$ {transformToReal(totalPrice)}
           </Text>
         </Sc.TotalContainer>
         <Sc.EndButton

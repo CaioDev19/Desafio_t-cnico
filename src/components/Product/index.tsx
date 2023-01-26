@@ -8,6 +8,7 @@ import {
   removeProduct,
 } from "../../store/features/cart/cartSlice"
 import { ReducedProduct } from "../../global/types/product"
+import { transformToReal } from "../../util/currency"
 
 export function Product({
   id,
@@ -17,11 +18,9 @@ export function Product({
   price,
   secondary,
   amount,
-  totalPrice,
 }: ReducedProduct & {
   secondary?: boolean
   amount?: number
-  totalPrice?: number
 }) {
   const dispatch = useDispatch()
 
@@ -34,7 +33,7 @@ export function Product({
           X
         </Sc.SecondaryCloseButton>
         <Sc.SecondaryCardLeft>
-          <img src={photo} alt="dasd" />
+          <Sc.ImageSecondary src={photo} alt={name} />
           <Text
             type="span"
             as="span"
@@ -89,7 +88,7 @@ export function Product({
             size="sml"
             weight="sstr"
           >
-            R$ {totalPrice}
+            R$ {transformToReal(Number(price))}
           </Text>
         </Sc.SecondaryCardRight>
       </Sc.SecondaryCard>
@@ -119,7 +118,7 @@ export function Product({
               size="rgl"
               color="white"
             >
-              R$ {Number(price).toFixed(0)}
+              R$ {transformToReal(Number(price))}
             </Text>
           </Sc.PriceTag>
         </Sc.UpperCardText>

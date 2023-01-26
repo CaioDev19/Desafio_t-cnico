@@ -23,6 +23,11 @@ export const Card = styled.div`
 
   @media (max-width: ${({ theme }) => theme.BREAKPOINTS.tablet}px) {
     width: 251px;
+
+    transition: none;
+    &:hover {
+      transform: none;
+    }
   }
 `
 export const CardImage = styled.img`
@@ -83,6 +88,13 @@ export const BuyButton = styled.button`
   &:hover {
     opacity: 0.8;
   }
+
+  @media (max-width: ${({ theme }) => theme.BREAKPOINTS.tablet}px) {
+    transition: none;
+    &:hover {
+      opacity: 1;
+    }
+  }
 `
 
 export const SecondaryCard = styled.div`
@@ -106,11 +118,10 @@ export const SecondaryCardLeft = styled.div`
   justify-content: flex-start;
   gap: 1.25rem;
   width: 45%;
-
-  img {
-    height: 50px;
-    width: 50px;
-  }
+`
+export const ImageSecondary = styled.img`
+  height: 50px;
+  width: 50px;
 `
 export const SecondaryCardRight = styled(SecondaryCardLeft)`
   width: 50%;

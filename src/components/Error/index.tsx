@@ -15,7 +15,7 @@ export function Error({ size = "exl", message }: Props) {
         as="h2"
         color="black"
         weight="str"
-        size={size === "lrg" ? "exl" : "lrg"}
+        size={size}
       >
         {message}
       </Text>

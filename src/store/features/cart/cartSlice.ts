@@ -3,7 +3,6 @@ import { ReducedProduct } from "../../../global/types/product"
 
 type ProductCount = ReducedProduct & {
   amount: number
-  totalPrice: number
 }
 
 interface IinitialState {
@@ -34,7 +33,6 @@ const cartSlice = createSlice({
             ? {
                 ...item,
                 amount: item.amount + 1,
-                totalPrice: item.totalPrice + Number(item.price),
               }
             : item
         )
@@ -44,7 +42,6 @@ const cartSlice = createSlice({
           {
             ...product,
             amount: 1,
-            totalPrice: Number(product.price),
           },
         ]
       }
@@ -72,7 +69,6 @@ const cartSlice = createSlice({
             ? {
                 ...item,
                 amount: item.amount - 1,
-                totalPrice: item.totalPrice - Number(item.price),
               }
             : item
         )

@@ -8,6 +8,7 @@ import {
   removeAllProductsById,
   removeProduct,
 } from "../../../store/features/cart/cartSlice"
+import { transformToReal } from "../../../util/currency"
 
 export function MobileProduct({
   id,
@@ -29,7 +30,7 @@ export function MobileProduct({
       >
         X
       </Sc.CloseButton>
-      <DefaultSc.CardImage src={photo} />
+      <DefaultSc.CardImage src={photo} alt={name} />
       <DefaultSc.CardText>
         <Text
           type="title"
@@ -81,7 +82,7 @@ export function MobileProduct({
               size="rgl"
               color="white"
             >
-              R$ {Number(price).toFixed(0)}
+              R$ {transformToReal(Number(price))}
             </Text>
           </DefaultSc.PriceTag>
         </Sc.LowerContent>
